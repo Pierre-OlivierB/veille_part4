@@ -3,15 +3,24 @@
 function CreateForm() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [inputMail, setInputMail] = React.useState("inputStyling");
+  const [inputPass, setInputPass] = React.useState("inputStyling");
+
+  const pass = "1234";
 
   const handleSignIn = () => {
     // Check if email is valid
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      console.log("Please enter a valid email address");
+    if (!emailRegex.test(email) || pass != password) {
+      console.log("Please enter a valid email address or a pass valid");
+      setInputMail("inputStyling invalid");
+      setInputPass("inputStyling invalid");
       return;
     }
-
+    setInputMail("inputStyling");
+    setInputPass("inputStyling");
+    setEmail("");
+    setPassword("");
     console.log("You are signed in");
   };
 
@@ -26,7 +35,7 @@ function CreateForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email address"
-            className="inputStyling"
+            className={inputMail}
           />
         </div>
         <div className="inputfields styling">
@@ -36,7 +45,7 @@ function CreateForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
-            className="inputStyling"
+            className={inputPass}
           />
         </div>
         <div className="buttondivstyling buttonstyling">
